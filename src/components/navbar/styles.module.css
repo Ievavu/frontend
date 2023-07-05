@@ -1,0 +1,40 @@
+.navbar {
+    height: 120px;
+    width: 100%;
+    background-color: #79401e;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #45a049;
+  }
+
+
+.navbar ul {
+    display: flex;
+    list-style-type: none;
+    gap: 20px
+}
+
+.navbar ul li a {
+    color: rgb(36, 32, 37);
+    text-decoration: none;
+}
+
+.logo {
+    height: 100px;
+}

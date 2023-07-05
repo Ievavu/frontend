@@ -1,22 +1,29 @@
 import React from "react";
 import QuestionCard from "../components/questionCard/QuestionCard"
 import styles from "./styles.module.css";
+import Navbar from "../components/navbar/Navbar";
 
 
 const MainPage = ({ apiResponse }) => {
   const { questions } = apiResponse;
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>List of Questions</h1>
-      <ul className={styles.questionList}>
-        {questions.map((question) => (
-          <QuestionCard key={question.id} question={question} />
-        ))}
-      </ul>
+    <div>
+      <Navbar />
+      <div className={styles.container}>
+        <h1 className={styles.title}>List of Questions</h1>
+        <ul className={styles.questionList}>
+          {questions.map((question) => (
+            <QuestionCard key={question.id} question={question} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
+
+export default MainPage;
+
 
 
 export async function getServerSideProps() {
@@ -33,5 +40,3 @@ export async function getServerSideProps() {
     console.log(err);
   }
 }
-
-export default MainPage;
