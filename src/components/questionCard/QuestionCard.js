@@ -6,7 +6,7 @@ const QuestionCard = ({ question }) => {
   return (
     <>
       <Link className={styles.link} href={`/question/${question.id}`}>
-      <div className={styles.card}>
+      <div className={styles.question}>
         <h3>{question.subject}</h3>
         <p>{question.details}</p>
       </div>
@@ -17,4 +17,3 @@ const QuestionCard = ({ question }) => {
 };
 
 export default QuestionCard;
-
