@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import styles from "./styles.module.css";
-import Navbar from "../../components/navbar/Navbar";
+import styles from './styles.module.css';
+import Navbar from '../../components/navbar/Navbar';
 
 const NewQuestionPage = () => {
-  const [question, setQuestion] = useState('');
+  const [subject, setSubject] = useState('');
   const [details, setDetails] = useState('');
 
-  const handleQuestionChange = (e) => {
-    setQuestion(e.target.value);
+  const handleSubjectChange = (e) => {
+    setSubject(e.target.value);
   };
 
   const handleDetailsChange = (e) => {
@@ -16,15 +16,21 @@ const NewQuestionPage = () => {
 
   const handleSubmit = async () => {
     const requestBody = {
-      question: question,
+      subject: subject,
       details: details,
     };
 
     try {
+      const jwtToken = document.cookie
+        .split('; ')
+        .find((cookie) => cookie.startsWith('jwt='))
+        .split('=')[1];
+
       const response = await fetch('http://localhost:8081/question', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `${jwtToken}`,
         },
         body: JSON.stringify(requestBody),
       });
@@ -32,6 +38,7 @@ const NewQuestionPage = () => {
       if (response.ok) {
         // Handle successful API response here
         console.log('Question submitted successfully');
+        window.location.href = '/';
       } else {
         // Handle API error response here
         console.error('Error submitting question');
@@ -49,15 +56,15 @@ const NewQuestionPage = () => {
         <h1 className={styles.title}>Ask a New Question</h1>
         <form className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="question" className={styles.label}>
+            <label htmlFor="subject" className={styles.label}>
               Question
             </label>
             <input
               type="text"
-              id="question"
+              id="subject"
               className={styles.input}
-              value={question}
-              onChange={handleQuestionChange}
+              value={subject}
+              onChange={handleSubjectChange}
             />
           </div>
           <div className={styles.formGroup}>
