@@ -14,6 +14,9 @@ const Navbar = () => {
 
       <ul>
         <li>
+          <a className={styles.button} href="/login">Login</a>
+        </li>
+        <li>
           <a className={styles.button} href="/newQuestion">Ask a question</a>
         </li>
       </ul>
