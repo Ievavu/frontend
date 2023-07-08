@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from "./styles.module.css";
+import Navbar from '../../components/navbar/Navbar';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -35,10 +36,7 @@ const LoginPage = () => {
       });
 
       if (response.status === 200) {
-        // Store JWT in cookies or local storage
         document.cookie = `jwt=${response.data.jwt}; path=/`;
-
-        // Redirect to another page
         window.location.href = '/';
       }
     } catch (error) {
@@ -47,37 +45,40 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Login</h2>
-      <div className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            className={styles.input}
-          />
+    <div>
+      <Navbar />
+      <div className={styles.container}>
+        <h2 className={styles.title}>Login</h2>
+        <div className={styles.form}>
+          <div className={styles.formGroup}>
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              className={styles.input}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              className={styles.input}
+            />
+          </div>
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          <button className={styles.button} onClick={handleLogin}>
+            Login
+          </button>
         </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password" className={styles.label}>
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            className={styles.input}
-          />
-        </div>
-        {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-        <button className={styles.button} onClick={handleLogin}>
-          Login
-        </button>
       </div>
     </div>
   );
