@@ -36,15 +36,12 @@ const NewQuestionPage = () => {
       });
 
       if (response.ok) {
-        // Handle successful API response here
         console.log('Question submitted successfully');
         window.location.href = '/';
       } else {
-        // Handle API error response here
         console.error('Error submitting question');
       }
     } catch (error) {
-      // Handle fetch error here
       console.error('Error submitting question:', error);
     }
   };
